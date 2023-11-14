@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>연습문제 1</title>
     <style>
+        body {
+            transition: 0.5s;
+        }
+
         #container {
             width: 400px;
             margin: 0 auto;
@@ -22,10 +26,22 @@
             font-size: 16px;
             font-weight: bold;
         }
+        .mode {
+            color: white;
+            background-color: black;
+        }
+        .btn {
+            display: none;
+        }
+
     </style>
 </head>
 
-<body>
+<body id>
+    <div style="float: right;">
+        <input id="mod" type="button" value="다크모드" onclick="dark()">
+        <input id="mod2" class="btn" type="button" value="기본모드" onclick="dark()">
+    </div>
     <div id="container">
         <h1>피자 주문</h1>
         <form name="frm">
@@ -48,36 +64,48 @@
             <fieldset>
                 <legend>합계</legend>
                 <input type="button" onclick="plus()" value="계산하기">
+                <input type="reset" value="초기화">
                 <input type="text" id="total" name="total" class="price" readonly>
             </fieldset>
         </form>
     </div>
     <script>
-        let total = 18000;
-        const totalval = document.getElementById('total');
+        const mod = document.getElementById("mod");
+        const mod2 = document.getElementById("mod2");
+        let total = 18000;  // 기본 값 설정
+        const totalval = document.getElementById('total');  // 결과 적는 개체 가져오기
 
         function Size(money) {
-            const val = money.value;
+            const val = money.value;    // 사이즈 선택 값
             if (val == 18000)
-                total = total + Number(val) - 24000;
+                total = total + parseInt(val) - 24000;  // 라지 사이즈 가격
             else
-                total = total + Number(val) - 18000;
+                total = total + parseInt(val) - 18000;  // 미디엄 사이즈 가격
+            totalval.value = String(total) + "원"
         }
 
-        const boxes = document.querySelectorAll('.checkbx');
-        boxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                if (checkbox.checked) {
-                    total += Number(checkbox.value);
+        const boxes = document.querySelectorAll('.checkbx');    // 체크박스 배열
+        boxes.forEach(checkbox => { // forEach로 배열마다 반복
+            checkbox.addEventListener('change', () => { // 값이 바뀌었으면
+                if (checkbox.checked) { // 체크했으면
+                    total += parseInt(checkbox.value);  // 가격 더함
                 } else {
-                    total -= Number(checkbox.value);
+                    total -= parseInt(checkbox.value);  // 가격 뺌
                 }
+                totalval.value = String(total) + "원"
             });
         });
 
         function plus() {
             totalval.value = String(total) + "원"
         }
+        function dark()
+        {
+            document.body.classList.toggle('mode');
+            mod.classList.toggle('btn');
+            mod2.classList.toggle('btn');
+        }
+
     </script>
 </body>
 
