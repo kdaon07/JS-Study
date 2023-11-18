@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>연습문제 1</title>
+    <title>피자 주문</title>
     <style>
         body {
             transition: 0.5s;
@@ -84,7 +84,7 @@
             totalval.value = String(total) + "원"
         }
 
-        const boxes = document.querySelectorAll('.checkbx');    // 체크박스 배열
+        const boxes = document.querySelectorAll('.checkbx');   // 체크박스 배열
         boxes.forEach(checkbox => { // forEach로 배열마다 반복
             checkbox.addEventListener('change', () => { // 값이 바뀌었으면
                 if (checkbox.checked) { // 체크했으면
