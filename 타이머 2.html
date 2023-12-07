@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        .container {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        .skills {
+            text-align: right;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        .html {
+            width: 0%;
+            background-color: #04AA6D;
+        }
+
+        .css {
+            width: 0%;
+            background-color: #2196F3;
+        }
+
+        .js {
+            width: 0%;
+            background-color: #f44336;
+        }
+
+        .php {
+            width: 0%;
+            background-color: #808080;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Skills</h1>
+
+    <p>HTML</p>
+    <div class="container">
+        <div class="skills html" id="html">90%</div>
+    </div>
+
+    <p>CSS</p>
+    <div class="container">
+        <div class="skills css" id="css">80%</div>
+    </div>
+
+    <p>JavaScript</p>
+    <div class="container">
+        <div class="skills js" id="js">65%</div>
+    </div>
+
+    <p>PHP</p>
+    <div class="container">
+        <div class="skills php" id="php">60%</div>
+    </div>
+    <button type="button" onclick="pstart()">progress</button>
+</body>
+
+</html>
+<script>
+    let i = 0;
+    function pstart() {
+        if (i == 0) {
+            i = 1;
+            let pbarDiv1 = document.getElementById("html");
+            let pbarDiv2 = document.getElementById("css");
+            let pbarDiv3 = document.getElementById("js");
+            let pbarDiv4 = document.getElementById("php");
+            let pbarWidth = 0;
+            let id = setInterval(frame, 100);
+            function frame() {
+                if (pbarWidth >= 90) {
+                    clearInterval(id);
+                    i = 0;
+                }
+                else {
+                    pbarWidth++;
+                    pbarDiv1.style.width = pbarWidth + "%";
+                    pbarDiv1.innerHTML = pbarWidth + "%";
+                }
+                if (pbarWidth <= 80) {
+                    pbarWidth++;
+                    pbarDiv2.style.width = pbarWidth + "%";
+                    pbarDiv2.innerHTML = pbarWidth + "%";
+                }
+                if (pbarWidth <= 65) {
+                    pbarWidth++;
+                    pbarDiv3.style.width = pbarWidth + "%";
+                    pbarDiv3.innerHTML = pbarWidth + "%";
+                }
+                if (pbarWidth <= 60) {
+                    pbarWidth++;
+                    pbarDiv4.style.width = pbarWidth + "%";
+                    pbarDiv4.innerHTML = pbarWidth + "%";
+                }
+            }
+        }
+    }
+</script>
+
+</html>
